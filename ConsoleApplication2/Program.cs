@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ConsoleApplication2
 {
@@ -6,9 +7,23 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            int x = 10;
+            // string data = Console.ReadLine();
+            //
+            // int res = 100 + Convert.ToInt32(data);
+            //
+            // Console.WriteLine(res);
 
-            Console.WriteLine(x);
+            // Console.WriteLine($"you have typed {data}");
+            // Console.WriteLine("you have typed " + data);
+
+            NumberFormatInfo numberFormatInfo = new NumberFormatInfo()
+            {
+                NumberDecimalSeparator = "."
+            };
+
+            string num = "1.9";
+
+            Console.WriteLine(Convert.ToDouble(num, numberFormatInfo));
         }
     }
 }
