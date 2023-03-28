@@ -7,50 +7,43 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            int[] arr1 = { 1, 2, 3, int.MaxValue, int.MinValue };
-            int[] arr2 = new int[4] { 1, 2, 3, 4 };
-            int[] arr = new int[3];
+            int[,] arr1 = new int[2, 3];
+            int[,] arr2 = new int[2, 3] { { 1, 2, 3 }, { 4, 5, 6 } };
+            int[,] arr3 = { { 1, 2, 3 }, { 4, 5, 6 } };
+
+            for (int i = 0; i < arr3.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr3.GetLength(1); j++)
+                {
+                    Console.Write(arr3[i, j] + " ");
+                }
+
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("-----------------");
+
+            int[,] arr4 = new int[3, 4];
 
             Random rand = new Random();
 
-            for (int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr4.GetLength(0); i++)
             {
-                arr[i] = rand.Next(0, 11);
-                Console.Write(arr[i] + " ");
-            }
-
-            Console.WriteLine("\n--------------------");
-
-            foreach (var item in arr)
-            {
-                Console.Write(item + " ");
-            }
-
-            Console.WriteLine("\n---------sum-----------");
-
-            int[] arr3 = { 1, 3, 4 };
-            int sum = 0;
-            for (int i = 0; i < arr3.Length; i++)
-            {
-                sum += arr3[i];
-            }
-
-            Console.WriteLine(sum);
-
-            Console.WriteLine("-----maximum number------");
-            int maxNumber = int.MinValue;
-
-            for (int i = 0; i < arr3.Length; i++)
-            {
-                if (maxNumber < arr3[i])
+                for (int j = 0; j < arr4.GetLength(1); j++)
                 {
-                    maxNumber = arr3[i];
+                    arr4[i, j] = rand.Next(0, 10);
+                    Console.Write(arr4[i, j] + " ");
                 }
+
+                Console.WriteLine();
             }
 
-            Console.WriteLine(maxNumber);
-            Console.WriteLine(arr3.Max());
-            Console.WriteLine(arr3.OrderByDescending(i => i).First());
+            Console.WriteLine("-----------------");
+
+            foreach (var i in arr4)
+            {
+                Console.Write(i + " ");
+            }
         }
     }
 }
