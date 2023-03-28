@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace ConsoleApplication2
 {
@@ -47,10 +45,12 @@ namespace ConsoleApplication2
                 if (maxNumber < arr3[i])
                 {
                     maxNumber = arr3[i];
-                }  
+                }
             }
 
             Console.WriteLine(maxNumber);
+            Console.WriteLine(arr3.Max());
+            Console.WriteLine(arr3.OrderByDescending(i => i).First());
         }
     }
 }
