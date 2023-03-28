@@ -7,42 +7,30 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            int[,] arr1 = new int[2, 3];
-            int[,] arr2 = new int[2, 3] { { 1, 2, 3 }, { 4, 5, 6 } };
-            int[,] arr3 = { { 1, 2, 3 }, { 4, 5, 6 } };
+            int[] arr = new int[4] { 1, 2, 3, 4 };
+            int[] extraArr = new int[5];
 
-            for (int i = 0; i < arr3.GetLength(0); i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                for (int j = 0; j < arr3.GetLength(1); j++)
-                {
-                    Console.Write(arr3[i, j] + " ");
-                }
-
-                Console.WriteLine();
+                extraArr[i] = arr[i];
             }
 
-            Console.WriteLine("-----------------");
+            arr = extraArr;
 
-            int[,] arr4 = new int[3, 4];
-
-            Random rand = new Random();
-
-            for (int i = 0; i < arr4.GetLength(0); i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                for (int j = 0; j < arr4.GetLength(1); j++)
-                {
-                    arr4[i, j] = rand.Next(0, 10);
-                    Console.Write(arr4[i, j] + " ");
-                }
-
-                Console.WriteLine();
+                Console.Write(arr[i] + " ");
             }
 
-            Console.WriteLine("-----------------");
+            Console.WriteLine("------------------");
 
-            foreach (var i in arr4)
+            int[] arr2 = new int[4] { 1, 2, 3, 4 };
+
+            Array.Resize(ref arr2, 5);
+
+            for (int i = 0; i < arr2.Length; i++)
             {
-                Console.Write(i + " ");
+                Console.Write(arr[i] + " ");
             }
         }
     }
