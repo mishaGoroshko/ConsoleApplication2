@@ -7,19 +7,24 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Queue<string> cicles = new Queue<string>();
-            cicles.Enqueue("bmw");
-            cicles.Enqueue("aprilia");
-            cicles.Enqueue("honda");
+            Stack<int> numbers = new Stack<int>();
 
-            Console.WriteLine("Dequeue = return + remove\n" + cicles.Dequeue());
-            Console.WriteLine("Peek = return\n" + cicles.Peek());
+            numbers.Push(1);
+            numbers.Push(2);
+            numbers.Push(3);
+            numbers.Push(4);
+            numbers.Push(5);
 
-            Console.WriteLine("------------------");
+            Console.WriteLine("first out number - " + numbers.Peek());
 
-            foreach (string cicle in cicles)
+            foreach (int number in numbers)
             {
-                Console.WriteLine(cicle);
+                Console.WriteLine(number);
+            }
+
+            while (numbers.Count > 0)
+            {
+                Console.WriteLine($"next removed number is {numbers.Pop()}");
             }
         }
     }
