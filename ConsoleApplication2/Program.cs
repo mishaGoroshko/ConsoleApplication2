@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleApplication2
 {
@@ -6,32 +7,35 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            int[] arr = new int[3];
-            Resize(ref arr, 5);
-            Console.WriteLine(arr.Length);
-            
-            int[,] arr2 = new int[2,3];
-            Resize(ref arr2, 5, 5);
-            Console.WriteLine(arr2.Length);
-        }
+            List<int> numbers = new List<int>(5);
 
-        static void Resize(ref int[] arr, int newSize)
-        {
-            Array.Resize(ref arr, newSize);
-        }
+            numbers.Add(11);
+            numbers.Add(22);
+            numbers.Add(33);
+            numbers.Add(44);
+            numbers.Add(55);
 
-        static void Resize(ref int[,] arr, int rowSize, int columnSize)
-        {
-            int[,] tempArr = new int[rowSize, columnSize];
-            for (int i = 0; i < arr.GetLength(0); i++)
+            numbers.AddRange(new int[] { 66, 77, 88 });
+
+            numbers.Insert(3, 10000);
+
+            for (int i = 0; i < numbers.Count; i++)
             {
-                for (int j = 0; j < arr.GetLength(1); j++)
-                {
-                    tempArr[i, j] = arr[i, j];
-                }
+                Console.WriteLine(numbers[i]);
             }
 
-            arr = tempArr;
+            numbers.RemoveAt(4);
+
+            numbers.Remove(66);
+
+            // numbers.Clear();
+
+            foreach (var number in numbers)
+            {
+                Console.WriteLine(number);
+            }
+
+            Console.WriteLine($"index of number 77 is {numbers.IndexOf(77)}");
         }
     }
 }
