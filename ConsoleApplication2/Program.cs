@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace ConsoleApplication2
 {
@@ -7,33 +6,32 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            int res = 0, a = 1, b = 4;
-            Sum(a, b, ref res);
-            Console.WriteLine(res);
-
-            int res2, a2 = 1, b2 = 4;
-            Sum2(a2, b2, out res2);
-            Console.WriteLine(res);
-
-            int[] arr = new int[5];
-            int i = 2, value = 42;
-            ChangeArray(arr, i, value);
-            Console.WriteLine(arr[2]);
+            int[] arr = new int[3];
+            Resize(ref arr, 5);
+            Console.WriteLine(arr.Length);
+            
+            int[,] arr2 = new int[2,3];
+            Resize(ref arr2, 5, 5);
+            Console.WriteLine(arr2.Length);
         }
 
-        static int Sum(int a, int b, ref int res)
+        static void Resize(ref int[] arr, int newSize)
         {
-            return res = a + b;
+            Array.Resize(ref arr, newSize);
         }
 
-        static int Sum2(int a, int b, out int res)
+        static void Resize(ref int[,] arr, int rowSize, int columnSize)
         {
-            return res = a + b;
-        }
+            int[,] tempArr = new int[rowSize, columnSize];
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    tempArr[i, j] = arr[i, j];
+                }
+            }
 
-        static void ChangeArray(int[] arr, int index, int value)
-        {
-            arr[index] = value;
+            arr = tempArr;
         }
     }
 }
