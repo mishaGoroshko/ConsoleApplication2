@@ -7,35 +7,20 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            List<int> numbers = new List<int>(5);
+            Queue<string> cicles = new Queue<string>();
+            cicles.Enqueue("bmw");
+            cicles.Enqueue("aprilia");
+            cicles.Enqueue("honda");
 
-            numbers.Add(11);
-            numbers.Add(22);
-            numbers.Add(33);
-            numbers.Add(44);
-            numbers.Add(55);
+            Console.WriteLine("Dequeue = return + remove\n" + cicles.Dequeue());
+            Console.WriteLine("Peek = return\n" + cicles.Peek());
 
-            numbers.AddRange(new int[] { 66, 77, 88 });
+            Console.WriteLine("------------------");
 
-            numbers.Insert(3, 10000);
-
-            for (int i = 0; i < numbers.Count; i++)
+            foreach (string cicle in cicles)
             {
-                Console.WriteLine(numbers[i]);
+                Console.WriteLine(cicle);
             }
-
-            numbers.RemoveAt(4);
-
-            numbers.Remove(66);
-
-            // numbers.Clear();
-
-            foreach (var number in numbers)
-            {
-                Console.WriteLine(number);
-            }
-
-            Console.WriteLine($"index of number 77 is {numbers.IndexOf(77)}");
         }
     }
 }
