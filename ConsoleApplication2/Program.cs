@@ -7,24 +7,31 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Stack<int> numbers = new Stack<int>();
+            Dictionary<string, string> countries = new Dictionary<string, string>();
 
-            numbers.Push(1);
-            numbers.Push(2);
-            numbers.Push(3);
-            numbers.Push(4);
-            numbers.Push(5);
+            countries.Add("Poland", "Warsaw");
+            countries.Add("Germany", "Berlin");
+            countries.Add("UK", "London");
 
-            Console.WriteLine("first out number - " + numbers.Peek());
+            countries.Remove("UK");
 
-            foreach (int number in numbers)
+            if (countries.ContainsKey("Poland")) Console.WriteLine(countries["Poland"]);
+
+            foreach (var item in countries)
             {
-                Console.WriteLine(number);
+                Console.WriteLine(item);
+                Console.WriteLine(item.Key);
+                Console.WriteLine(item.Value);
             }
 
-            while (numbers.Count > 0)
+            foreach (var country in countries.Keys)
             {
-                Console.WriteLine($"next removed number is {numbers.Pop()}");
+                Console.WriteLine(country);
+            }
+
+            foreach (var capital in countries.Values)
+            {
+                Console.WriteLine(capital);
             }
         }
     }
