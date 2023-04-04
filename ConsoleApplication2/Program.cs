@@ -7,31 +7,46 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Dictionary<string, string> countries = new Dictionary<string, string>();
+            Car audi = new Car();
+            audi.Name = "SQ8";
+            audi.Power = 450;
+            audi.Age = 3;
 
-            countries.Add("Poland", "Warsaw");
-            countries.Add("Germany", "Berlin");
-            countries.Add("UK", "London");
+            Console.WriteLine(audi.Name);
+            Console.WriteLine("--------");
+            audi.ShowParams();
+            Console.WriteLine("--------");
+            // audi.ChangeQuality(5, 25);
+            audi.ChangeQualityThis(5, 25);
+            Console.WriteLine("--------");
+            audi.ShowParams();
+        }
 
-            countries.Remove("UK");
+        class Car
+        {
+            public string Name;
+            public int Power;
+            public int Age;
+            private readonly int _vin = 82347123;
 
-            if (countries.ContainsKey("Poland")) Console.WriteLine(countries["Poland"]);
 
-            foreach (var item in countries)
+            public void ShowParams()
             {
-                Console.WriteLine(item);
-                Console.WriteLine(item.Key);
-                Console.WriteLine(item.Value);
+                Console.WriteLine($"Name: {Name}\n" +
+                                  $"Power: {Power}\n" +
+                                  $"Age: {Age}\n" +
+                                  $"VIN: {_vin}");
             }
 
-            foreach (var country in countries.Keys)
+            public void ChangeQuality(int lostAges, int lostHorses)
             {
-                Console.WriteLine(country);
+                Age += lostAges;
+                Power -= lostHorses;
             }
-
-            foreach (var capital in countries.Values)
+            public void ChangeQualityThis(int Age, int lostHorses)
             {
-                Console.WriteLine(capital);
+                this.Age += Age;
+                Power -= lostHorses;
             }
         }
     }
