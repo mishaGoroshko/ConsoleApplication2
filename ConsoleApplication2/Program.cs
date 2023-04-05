@@ -7,43 +7,26 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Address address = new Address("B1-3029", "Gdynia", "Poland");
-            Employee employee = new Employee(1001, "Mika", address);
-            employee.Display();
-            Console.ReadKey();
+            Aydi newCar = new Aydi();
+
+            newCar.Name = "SQ8";
+            newCar.Speed = 120;
+            newCar.MaxSpeed = 250;
+            
+            Console.WriteLine($"name: {newCar.Name}\n" +
+                              $"speed: {newCar.Speed}\n" +
+                              $"max speed: {newCar.MaxSpeed}");
         }
     }
-    
-    class Address
+
+    class Car
     {
-        public string AddressLine, City, State;
-        public Address(string addressLine, string city, string state)
-        {
-            AddressLine = addressLine;
-            City = city;
-            State = state;
-        }
-    }
-    class Employee
-    {
-        //Using Address in Employee class
-        //Establishing Has-A relationship i.e. Employee HAS-A Address   
-        public Address address; 
-        public int Id;
         public string Name;
-        public Employee(int id, string name, Address adrs)
-        {
-            Id = id;
-            Name = name;
-            address = adrs;
-        }
-        public void Display()
-        {
-            Console.WriteLine($"Employee Id: {Id}");
-            Console.WriteLine($"Employee Name: {Name}");
-            Console.WriteLine($"AddressLine: {address.AddressLine}");
-            Console.WriteLine($"City: {address.City}");
-            Console.WriteLine($"State: {address.State}");
-        }
+        public int Speed;
+    }
+
+    class Aydi : Car
+    {
+        public int MaxSpeed;
     }
 }
