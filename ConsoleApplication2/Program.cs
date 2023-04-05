@@ -7,32 +7,44 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Aydi newCar = new Aydi("SQ8", 120, 250);
-            Console.WriteLine($"name: {newCar.Name}\n" +
-                              $"speed: {newCar.Speed}\n" +
-                              $"max speed: {newCar.MaxSpeed}");
+            Renderer rend = new Renderer(8, 8);
+            Player person = new Player();
+
+            person.Draw(rend.X, rend.Y);
         }
     }
 
-    class Car
+    class Renderer
     {
-        public string Name;
-        public int Speed;
+        private int _x;
+        // private int _y; //----because: public int Y { get; private set; }
 
-        public Car(string name, int speed)
+        public int X
         {
-            Name = name;
-            Speed = speed;
+            get { return _x; }
+            private set
+            {
+                if (X > 0 && X < 10) _x = value;
+            }
+        }
+
+        public int Y { get; private set; }
+
+        public Renderer(int x, int y)
+        {
+            _x = x;
+            Y = y;
         }
     }
 
-    class Aydi : Car
+    class Player
     {
-        public int MaxSpeed;
-
-        public Aydi(string name, int speed, int maxSpeed) : base(name, speed)
+        public void Draw(int x, int y, char character = '@')
         {
-            MaxSpeed = maxSpeed;
+            Console.CursorVisible = false;
+            Console.SetCursorPosition(x, y);
+            Console.Write(character);
+            Console.ReadKey(true);
         }
     }
 }
