@@ -7,37 +7,43 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Table[] tables =
-            {
-                new Table(1, 10, 10),
-                new Table(2, 20, 20),
-                new Table(1, 30, 30)
-            };
-
-            for (int i = 0; i < tables.Length; i++)
-            {
-                tables[i].ShowProperties();
-            }
+            Address address = new Address("B1-3029", "Gdynia", "Poland");
+            Employee employee = new Employee(1001, "Mika", address);
+            employee.Display();
+            Console.ReadKey();
         }
     }
-
-    class Table
+    
+    class Address
     {
-        private int Number;
-        private int MaxSeats;
-        private int FreeSeats;
-
-        public Table(int number, int maxSeats, int freeSeats)
+        public string AddressLine, City, State;
+        public Address(string addressLine, string city, string state)
         {
-            Number = number;
-            MaxSeats = maxSeats;
-            FreeSeats = freeSeats;
+            AddressLine = addressLine;
+            City = city;
+            State = state;
         }
-
-        public void ShowProperties()
+    }
+    class Employee
+    {
+        //Using Address in Employee class
+        //Establishing Has-A relationship i.e. Employee HAS-A Address   
+        public Address address; 
+        public int Id;
+        public string Name;
+        public Employee(int id, string name, Address adrs)
         {
-            Console.WriteLine($"Table number: {Number}\n" +
-                              $"seats: free {FreeSeats} of max {MaxSeats}");
+            Id = id;
+            Name = name;
+            address = adrs;
+        }
+        public void Display()
+        {
+            Console.WriteLine($"Employee Id: {Id}");
+            Console.WriteLine($"Employee Name: {Name}");
+            Console.WriteLine($"AddressLine: {address.AddressLine}");
+            Console.WriteLine($"City: {address.City}");
+            Console.WriteLine($"State: {address.State}");
         }
     }
 }
