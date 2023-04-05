@@ -7,12 +7,7 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Aydi newCar = new Aydi();
-
-            newCar.Name = "SQ8";
-            newCar.Speed = 120;
-            newCar.MaxSpeed = 250;
-            
+            Aydi newCar = new Aydi("SQ8", 120, 250);
             Console.WriteLine($"name: {newCar.Name}\n" +
                               $"speed: {newCar.Speed}\n" +
                               $"max speed: {newCar.MaxSpeed}");
@@ -23,10 +18,21 @@ namespace ConsoleApplication2
     {
         public string Name;
         public int Speed;
+
+        public Car(string name, int speed)
+        {
+            Name = name;
+            Speed = speed;
+        }
     }
 
     class Aydi : Car
     {
         public int MaxSpeed;
+
+        public Aydi(string name, int speed, int maxSpeed) : base(name, speed)
+        {
+            MaxSpeed = maxSpeed;
+        }
     }
 }
