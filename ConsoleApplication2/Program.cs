@@ -7,52 +7,37 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Car audi = new Car();
-            // audi.Name = "SQ8";
-            // audi.Power = 450;
-            // audi.Age = 3;
+            Table[] tables =
+            {
+                new Table(1, 10, 10),
+                new Table(2, 20, 20),
+                new Table(1, 30, 30)
+            };
 
-            audi.ShowParams();
+            for (int i = 0; i < tables.Length; i++)
+            {
+                tables[i].ShowProperties();
+            }
+        }
+    }
+
+    class Table
+    {
+        private int Number;
+        private int MaxSeats;
+        private int FreeSeats;
+
+        public Table(int number, int maxSeats, int freeSeats)
+        {
+            Number = number;
+            MaxSeats = maxSeats;
+            FreeSeats = freeSeats;
         }
 
-        class Car
+        public void ShowProperties()
         {
-            public string Name;
-            public int Power;
-            public int Age;
-            private readonly int _vin = 82347123;
-
-            public Car(string name, int power, int age)
-            {
-                Name = name;
-                Power = power;
-                Age = age;
-            }
-
-            public Car()
-            {
-            }
-
-
-            public void ShowParams()
-            {
-                Console.WriteLine($"Name: {Name}\n" +
-                                  $"Power: {Power}\n" +
-                                  $"Age: {Age}\n" +
-                                  $"VIN: {_vin}");
-            }
-
-            public void ChangeQuality(int lostAges, int lostHorses)
-            {
-                Age += lostAges;
-                Power -= lostHorses;
-            }
-
-            public void ChangeQualityThis(int Age, int lostHorses)
-            {
-                this.Age += Age;
-                Power -= lostHorses;
-            }
+            Console.WriteLine($"Table number: {Number}\n" +
+                              $"seats: free {FreeSeats} of max {MaxSeats}");
         }
     }
 }
