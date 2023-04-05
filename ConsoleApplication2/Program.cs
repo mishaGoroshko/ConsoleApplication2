@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleApplication2
 {
@@ -7,44 +8,65 @@ namespace ConsoleApplication2
     {
         public static void Main(string[] args)
         {
-            Renderer rend = new Renderer(8, 8);
-            Player person = new Player();
+            Cart newCart = new Cart();
+            newCart.ShowProduct();
 
-            person.Draw(rend.X, rend.Y);
+            List<Product> newProduts = new List<Product>();
+
+            for (int i = 0; i < newCart.GetProductCount(); i++)
+            {
+                newProduts.Add(newCart.GetProductByIndex(i));
+            }
+            
+            newProduts.RemoveAt(3);//doesn't remove in newCart
+
+            Console.WriteLine();
+            newCart.ShowProduct();;
         }
     }
 
-    class Renderer
+    class Cart
     {
-        private int _x;
-        // private int _y; //----because: public int Y { get; private set; }
+        private List<Product> _products = new List<Product>();
 
-        public int X
+        public Cart()
         {
-            get { return _x; }
-            private set
+            _products.Add(new Product("bread"));
+            _products.Add(new Product("apple"));
+            _products.Add(new Product("water"));
+            _products.Add(new Product("milk"));
+        }
+
+        public void ShowProduct()
+        {
+            // for (int i = 0; i < products.Count; i++)
+            // {
+            //     Console.WriteLine(products[i].Name);
+            // }
+            foreach (Product product in _products)
             {
-                if (X > 0 && X < 10) _x = value;
+                Console.WriteLine(product.Name);
             }
         }
 
-        public int Y { get; private set; }
-
-        public Renderer(int x, int y)
+        public int GetProductCount()
         {
-            _x = x;
-            Y = y;
+            return _products.Count;
+        }
+
+        public Product GetProductByIndex(int index)
+        {
+            return _products.ElementAt(index);
         }
     }
 
-    class Player
+    class Product
     {
-        public void Draw(int x, int y, char character = '@')
+        public string Name { get; private set; }
+
+        public Product(string name)
         {
-            Console.CursorVisible = false;
-            Console.SetCursorPosition(x, y);
-            Console.Write(character);
-            Console.ReadKey(true);
+            Name = name;
         }
     }
 }
